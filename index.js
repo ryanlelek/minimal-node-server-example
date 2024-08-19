@@ -6,10 +6,6 @@ import helmet from "helmet";
 // New Express App
 const app = express();
 
-helmet({
-  contentSecurityPolicy: false,
-});
-
 // Routes
 app.get("/", function (req, res) {
   if (!req.body) {
@@ -112,6 +108,9 @@ app.post("/bodyparser-both", [
   },
 ]);
 app.get("/bodyparser-both-helmet", [
+  helmet({
+    contentSecurityPolicy: false,
+  }),
   body_parser.json(),
   body_parser.urlencoded({ extended: false }),
   function (req, res) {
@@ -126,6 +125,9 @@ app.get("/bodyparser-both-helmet", [
   },
 ]);
 app.post("/bodyparser-both-helmet", [
+  helmet({
+    contentSecurityPolicy: false,
+  }),
   body_parser.json(),
   body_parser.urlencoded({ extended: false }),
   function (req, res) {
